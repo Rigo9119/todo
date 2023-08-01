@@ -25,7 +25,7 @@ const mockTodos = [
 
 function App (): JSX.Element {
   const [todos, setTodos] = useState(mockTodos)
-  const [filterSelected, setFilterSelected] = useState<FiltersValue>(TODO_FILTERS.ALL)
+  const [filterSelectedNoMas, setFilterSelected] = useState<FiltersValue>(TODO_FILTERS.ALL)
 
   const completedTodo = ({ id, completed }: Pick<TypeTodo, 'id' | 'completed'>): void => {
     const newTodos = todos.map(todo => {
@@ -38,8 +38,8 @@ function App (): JSX.Element {
   }
 
   const filteredTodos = todos.filter(todo => {
-    if (filterSelected === TODO_FILTERS.ACTIVE) return !todo.completed
-    if (filterSelected === TODO_FILTERS.COMPLETED) return todo.completed
+    if (filterSelectedNoMas === TODO_FILTERS.ACTIVE) return !todo.completed
+    if (filterSelectedNoMas === TODO_FILTERS.COMPLETED) return todo.completed
     return todo
   })
 
@@ -83,7 +83,7 @@ function App (): JSX.Element {
         countTasks={countTasks}
         onFilterChange={onFilterChange}
         activeTasks={activeTasks}
-        filterSelected={filterSelected}
+        filterSelected={filterSelectedNoMas}
         deleteCompletedTodos={deleteCompletedTodos}
       />
     </div>
